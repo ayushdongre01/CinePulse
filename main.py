@@ -59,7 +59,7 @@ class TMDBMovieDetails(BaseModel):
     overview: Optional[str] = None
     release_date: Optional[str] = None
     poster_url: Optional[str] = None
-    backdrop_up: Optional[str] = None
+    backdrop_url: Optional[str] = None
     genres: List[dict] = []
 
 class TFIDFRecItem(BaseModel):
@@ -71,7 +71,7 @@ class SearchBundleResponse(BaseModel):
     query: str
     movie_details: TMDBMovieDetails
     tfidf_recommendations: List[TFIDFRecItem]
-    genre_reccommendations: List[TMDBMovieCard]
+    genre_recommendations: List[TMDBMovieCard]
 
 
 #UTILS
@@ -134,7 +134,7 @@ async def tmdb_movie_details(movie_id: int) -> TMDBMovieDetails:
         overview = data.get("overview"),
         release_date = data.get("release_date"),
         poster_url = make_img_url(data.get("poster_path")),
-        backdrop_up = make_img_url(data.get("backdrop_path")),
+        backdrop_url = make_img_url(data.get("backdrop_path")),
         genres = data.get("genres", []) or [],
     )
 
@@ -387,7 +387,7 @@ async def search_bundle(
     best = await tmdb_search_first(query)
     if not best:
         raise HTTPException(
-            status_code=404, details=f"No TMDB movie found for query: {query}"
+            status_code=404, detail=f"No TMDB movie found for query: {query}"
         )
     
     tmdb_id = int(best["id"])
@@ -426,11 +426,12 @@ async def search_bundle(
         )
 
         cards = await tmdb_cards_from_results(
-            discover.get("results", []), limit = genre_limit
+            discover.get("results", []), limit=genre_limit
         )
+        genre_recs = [c for c in cards if c.tmdb_id != details.tmdb_id]
     return SearchBundleResponse(
         query = query,
         movie_details=details,
         tfidf_recommendations=tfidf_items,
-        genre_reccommendations=genre_recs,
+        genre_recommendations=genre_recs,
     )
