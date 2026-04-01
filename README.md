@@ -22,7 +22,6 @@ The app lets users browse popular and trending movies, search by title, view ric
 - [Environment Variables](#environment-variables)
 - [API Endpoints](#api-endpoints)
 - [Screenshots](#screenshots)
-- [Known Issues](#known-issues)
 - [Troubleshooting](#troubleshooting)
 - [Future Improvements](#future-improvements)
 
@@ -294,20 +293,13 @@ Returns:
 
 ### Movie Details
 
-![Movie Details](https://github.com/ayushdongre01/CinePulse/blob/main/images/5.png)
+![Movie Details 1](https://github.com/ayushdongre01/CinePulse/blob/main/images/5.png)
+![Movie Details 2](https://github.com/ayushdongre01/CinePulse/blob/main/images/6.png)
 
 ### Recommendations
 
-![Recommendations](https://github.com/ayushdongre01/CinePulse/blob/main/images/6.png)
-
-
-## Known Issues
-
-- Typo in backend model field names and response assignments may lead to missing values in some response fields.
-- Error key names in one endpoint use details instead of detail.
-- Some recommendation branches are present but not fully wired into final response payload.
-
-If you want, these can be fixed in a cleanup pass.
+![Recommendations 1](https://github.com/ayushdongre01/CinePulse/blob/main/images/7.png)
+![Recommendations 2](https://github.com/ayushdongre01/CinePulse/blob/main/images/8.png)
 
 ## Troubleshooting
 
