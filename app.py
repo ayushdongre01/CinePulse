@@ -592,7 +592,8 @@ elif st.session_state.view == "details":
     # ── Backdrop ──────────────────────────────────────────────────────────────
     if data.get("backdrop_url"):
         st.markdown("<div style='margin-top:1.5rem'>", unsafe_allow_html=True)
-        st.image(data["backdrop_url"], width=None)
+        st.subheader("Backdrop")
+        st.image(data["backdrop_url"], width="stretch")
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.divider()
