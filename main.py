@@ -60,6 +60,7 @@ class TMDBMovieDetails(BaseModel):
     release_date: Optional[str] = None
     poster_url: Optional[str] = None
     backdrop_url: Optional[str] = None
+    vote_average: Optional[float] = None
     genres: List[dict] = []
 
 class TFIDFRecItem(BaseModel):
@@ -135,6 +136,7 @@ async def tmdb_movie_details(movie_id: int) -> TMDBMovieDetails:
         release_date = data.get("release_date"),
         poster_url = make_img_url(data.get("poster_path")),
         backdrop_url = make_img_url(data.get("backdrop_path")),
+        vote_average = data.get("vote_average"),
         genres = data.get("genres", []) or [],
     )
 
@@ -193,7 +195,7 @@ def get_local_idx_by_title(title: str) -> int:
         return int(TITLE_TO_IDX[key])
     raise HTTPException(
         status_code=404,
-        detail = f"Title not found in local dataset: '{title}"
+        detail = f"Title not found in local dataset: '{title}'"
     )
 
 def tfidf_recommend_titles(

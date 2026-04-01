@@ -334,7 +334,7 @@ def poster_grid(cards, cols=6, key_prefix="grid"):
             poster  = m.get("poster_url")
             with col_set[c]:
                 if poster:
-                    st.image(poster, width=200)
+                    st.image(poster, width="content")
                 else:
                     st.markdown(
                         "<div style='aspect-ratio:2/3;background:#1a1a1a;border-radius:10px;"
@@ -570,7 +570,7 @@ elif st.session_state.view == "details":
         st.markdown(f"<div class='detail-title'>{data.get('title','')}</div>", unsafe_allow_html=True)
 
         rating_html = ""
-        if rating:
+        if rating is not None:
             stars = "★" * round(rating / 2) + "☆" * (5 - round(rating / 2))
             rating_html = (
                 f"<span style='color:#e5c419;font-size:0.95rem;letter-spacing:.04em'>{stars}</span>"
@@ -628,7 +628,7 @@ elif st.session_state.view == "details":
                     "<div class='section-label' style='font-size:1.1rem'>🎭 More Like This</div>",
                     unsafe_allow_html=True,
                 )
-                poster_grid(genre_movies)
+                poster_grid(genre_movies, cols=grid_cols)
         else:
             st.info("Showing genre-based recommendations.")
             with st.spinner("Loading genre recommendations…"):
