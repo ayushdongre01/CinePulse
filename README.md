@@ -9,6 +9,15 @@ CinePulse is a full-stack movie recommendation project that combines:
 
 The app lets users browse popular and trending movies, search by title, view rich movie details, and get recommendations based on both local NLP similarity and TMDB genre-based discovery.
 
+---
+
+## 🌐 Live Demo
+
+👉 Try the app here:  
+🔗 [https://cine-pulse.streamlit.app/](https://cine-pulse.streamlit.app/)
+
+---
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
