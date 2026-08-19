@@ -284,6 +284,10 @@ def load_pickles():
 def health():
     return {"status": "ok"}
 
+@app.head("/health")
+def health_head():
+    return
+
 #HOME FEED (TMDB)
 @app.get("/home", response_model = List[TMDBMovieCard])
 async def home(
